@@ -257,7 +257,8 @@ function split_sql(str, tab) {
 
 vkbeautify.prototype.sql = function(text,step) {
 
-	var ar_by_quote = text.replace(/\s{1,}/g," ")
+	var ar_by_quote = text.replace(/(--\s[^\r\n]*)(\r\n|\r|\n)/g, "$1~::~")
+							.replace(/\s{1,}/g," ")
 							.replace(/\'/ig,"~::~\'")
 							.split('~::~'),
 		len = ar_by_quote.length,
