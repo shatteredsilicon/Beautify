@@ -200,7 +200,7 @@ function isSubquery(str, parenthesisLevel) {
 
 function split_sql(str, tab) {
 
-	return str.replace(/\s{1,}/g," ")
+	return str.trim().replace(/\s{1,}/g," ")
 
 				.replace(/ AND /ig,"~::~"+tab+tab+"AND ")
 				.replace(/ BETWEEN /ig,"~::~"+tab+"BETWEEN ")
@@ -246,8 +246,8 @@ function split_sql(str, tab) {
 				.replace(/ NOT /ig," NOT ")
 				.replace(/ NULL /ig," NULL ")
 				.replace(/ LIKE /ig," LIKE ")
-				.replace(/\s{0,}SELECT /ig,"SELECT ")
-				.replace(/\s{0,}UPDATE /ig,"UPDATE ")
+				.replace(/(\s{0,})SELECT /ig,"$1SELECT ")
+				.replace(/(\s{0,})UPDATE /ig,"$1UPDATE ")
 				.replace(/ SET /ig," SET ")
 				.replace(/\s{0,}EXPLAIN\s{0,}/ig,"EXPLAIN ")
 
